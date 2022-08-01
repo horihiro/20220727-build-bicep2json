@@ -8,7 +8,7 @@ on:
 
 env:
   out_dir: public
-  main_bicep_file: bicep/main_parent.bicep
+  main_bicep_file: bicep/main.bicep
   publish_branch: json_template
 
 jobs:

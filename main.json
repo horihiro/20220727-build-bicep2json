@@ -4,8 +4,8 @@
   "metadata": {
     "_generator": {
       "name": "bicep",
-      "version": "0.8.9.13224",
-      "templateHash": "11671346562216016860"
+      "version": "0.9.1.41621",
+      "templateHash": "4798255642452811619"
     }
   },
   "parameters": {
@@ -41,7 +41,7 @@
     {
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2020-10-01",
-      "name": "containerregistry-deploy",
+      "name": "containerregistry-deployment",
       "resourceGroup": "[parameters('resourceGroupName')]",
       "properties": {
         "expressionEvaluationOptions": {
@@ -62,8 +62,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.8.9.13224",
-              "templateHash": "488910774831011950"
+              "version": "0.9.1.41621",
+              "templateHash": "16765887674031938032"
             }
           },
           "parameters": {
@@ -98,7 +98,7 @@
     {
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2020-10-01",
-      "name": "loganalytics-deploy",
+      "name": "loganalytics-deployment",
       "resourceGroup": "[parameters('resourceGroupName')]",
       "properties": {
         "expressionEvaluationOptions": {
@@ -119,8 +119,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.8.9.13224",
-              "templateHash": "11764966434578662515"
+              "version": "0.9.1.41621",
+              "templateHash": "16312555429505284223"
             }
           },
           "parameters": {
@@ -159,7 +159,7 @@
     {
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2020-10-01",
-      "name": "containerenv-deploy",
+      "name": "containerenv-deployment",
       "resourceGroup": "[parameters('resourceGroupName')]",
       "properties": {
         "expressionEvaluationOptions": {
@@ -168,13 +168,13 @@
         "mode": "Incremental",
         "parameters": {
           "name": {
-            "value": "ce-demo-containerapp"
+            "value": "cae-demo-containerapp"
           },
           "location": {
             "value": "[parameters('location')]"
           },
           "logAnalyticsName": {
-            "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('resourceGroupName')), 'Microsoft.Resources/deployments', 'loganalytics-deploy')).outputs.name.value]"
+            "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('resourceGroupName')), 'Microsoft.Resources/deployments', 'loganalytics-deployment')).outputs.name.value]"
           }
         },
         "template": {
@@ -183,8 +183,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.8.9.13224",
-              "templateHash": "4500381005822598719"
+              "version": "0.9.1.41621",
+              "templateHash": "2323378564613106494"
             }
           },
           "parameters": {
@@ -229,14 +229,14 @@
         }
       },
       "dependsOn": [
-        "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('resourceGroupName')), 'Microsoft.Resources/deployments', 'loganalytics-deploy')]",
+        "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('resourceGroupName')), 'Microsoft.Resources/deployments', 'loganalytics-deployment')]",
         "[subscriptionResourceId('Microsoft.Resources/resourceGroups', parameters('resourceGroupName'))]"
       ]
     },
     {
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2020-10-01",
-      "name": "containerapp-api-deploy",
+      "name": "containerapp-api-deployment",
       "resourceGroup": "[parameters('resourceGroupName')]",
       "properties": {
         "expressionEvaluationOptions": {
@@ -245,13 +245,13 @@
         "mode": "Incremental",
         "parameters": {
           "name": {
-            "value": "ca-demo-apiapp"
+            "value": "ctapp-demo-api"
           },
           "location": {
             "value": "[parameters('location')]"
           },
           "envName": {
-            "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('resourceGroupName')), 'Microsoft.Resources/deployments', 'containerenv-deploy')).outputs.name.value]"
+            "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('resourceGroupName')), 'Microsoft.Resources/deployments', 'containerenv-deployment')).outputs.name.value]"
           },
           "ingressEnabled": {
             "value": true
@@ -272,8 +272,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.8.9.13224",
-              "templateHash": "6502288365698419971"
+              "version": "0.9.1.41621",
+              "templateHash": "17849697436334621854"
             }
           },
           "parameters": {
@@ -360,14 +360,14 @@
         }
       },
       "dependsOn": [
-        "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('resourceGroupName')), 'Microsoft.Resources/deployments', 'containerenv-deploy')]",
+        "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('resourceGroupName')), 'Microsoft.Resources/deployments', 'containerenv-deployment')]",
         "[subscriptionResourceId('Microsoft.Resources/resourceGroups', parameters('resourceGroupName'))]"
       ]
     },
     {
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2020-10-01",
-      "name": "containerapp-ui-deploy",
+      "name": "containerapp-ui-deployment",
       "resourceGroup": "[parameters('resourceGroupName')]",
       "properties": {
         "expressionEvaluationOptions": {
@@ -376,13 +376,13 @@
         "mode": "Incremental",
         "parameters": {
           "name": {
-            "value": "ca-demo-uiapp"
+            "value": "ctapp-demo-ui"
           },
           "location": {
             "value": "[parameters('location')]"
           },
           "envName": {
-            "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('resourceGroupName')), 'Microsoft.Resources/deployments', 'containerenv-deploy')).outputs.name.value]"
+            "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('resourceGroupName')), 'Microsoft.Resources/deployments', 'containerenv-deployment')).outputs.name.value]"
           },
           "ingressEnabled": {
             "value": true
@@ -403,8 +403,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.8.9.13224",
-              "templateHash": "6502288365698419971"
+              "version": "0.9.1.41621",
+              "templateHash": "17849697436334621854"
             }
           },
           "parameters": {
@@ -491,7 +491,7 @@
         }
       },
       "dependsOn": [
-        "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('resourceGroupName')), 'Microsoft.Resources/deployments', 'containerenv-deploy')]",
+        "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('resourceGroupName')), 'Microsoft.Resources/deployments', 'containerenv-deployment')]",
         "[subscriptionResourceId('Microsoft.Resources/resourceGroups', parameters('resourceGroupName'))]"
       ]
     }

@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.9.1.41621",
-      "templateHash": "4798255642452811619"
+      "templateHash": "12185781981855913206"
     }
   },
   "parameters": {
@@ -257,7 +257,7 @@
             "value": true
           },
           "ingressTargetPort": {
-            "value": 80
+            "value": 3500
           },
           "externalIngressEnabled": {
             "value": true
@@ -388,7 +388,7 @@
             "value": true
           },
           "ingressTargetPort": {
-            "value": 80
+            "value": 3000
           },
           "externalIngressEnabled": {
             "value": true
